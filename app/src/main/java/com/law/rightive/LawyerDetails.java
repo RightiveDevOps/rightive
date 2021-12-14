@@ -89,7 +89,7 @@ public class LawyerDetails extends AppCompatActivity {
                         chip.setPrimary(false);
                         chip.setSecondary(false);
                         specializations.remove(chip);
-                        for (int i = 0; i < specializations.size(); i++) {
+                        for (int i = 0; i < specializations.size() && specializations.size() > 2; i++) {
                             specializations.get(i).setSecondary(true);
                         }
                         if (specializations.size() > 2) {
