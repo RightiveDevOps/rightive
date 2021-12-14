@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "534963038110",
+    "firebase_url": "https://rightive-legal-default-rtdb.firebaseio.com",
+    "project_id": "rightive-legal",
+    "storage_bucket": "rightive-legal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534963038110:android:3155863ac086485fdf988f",
+        "android_client_info": {
+          "package_name": "com.law.rightive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534963038110-55rsou5iv5h52vd88tt8vj627gfqli52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn-IalRNqm7ZPSdNZg8S_fIg_HedFzDok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534963038110-55rsou5iv5h52vd88tt8vj627gfqli52.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

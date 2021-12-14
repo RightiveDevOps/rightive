@@ -1,0 +1,11 @@
+<com.law.rightive.utils.ChipUtils android:id="@+id/specializationChip"
+    style="@style/Widget.MaterialComponents.Chip.Choice"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Specialization"
+    android:textAppearance="@style/Chip.Specialization"
+    android:textColor="@color/white"
+    app:chipCornerRadius="8dp"
+    app:chipBackgroundColor="@color/chip_deselected"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" />

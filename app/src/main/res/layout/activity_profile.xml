@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".ProfileActivity">
+
+    <ImageView
+        android:id="@+id/border_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/todo"
+        android:adjustViewBounds="true"
+        app:layout_constraintDimensionRatio="340:12"
+        app:layout_constraintBottom_toTopOf="@id/inner_layout"
+        app:layout_constraintStart_toStartOf="@id/inner_layout"
+        app:srcCompat="@drawable/border_top_svg" />
+
+    <ImageView
+        android:id="@+id/border_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintDimensionRatio="340:12"
+        android:contentDescription="@string/todo"
+        app:layout_constraintTop_toBottomOf="@id/inner_layout"
+        app:layout_constraintStart_toStartOf="@id/inner_layout"
+        app:srcCompat="@drawable/border_bottom_svg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/synth_color"
+        android:clipChildren="false"
+        android:animateLayoutChanges="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/details_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="48dp"
+            android:fontFamily="@font/gilroysemibold"
+            android:text="great! tell us about yourself"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="@id/inner_layout" />
+
+        <TextView
+            android:id="@+id/details_hint_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="48dp"
+            android:fontFamily="@font/gilroylight"
+            android:maxLines="2"
+            android:text="in order to better understand you \nwe need further details"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@id/details_label"
+            app:layout_constraintStart_toStartOf="@id/details_label"
+            app:layout_constraintTop_toBottomOf="@id/details_label" />
+
+        <EditText
+            android:id="@+id/first"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/synth_color"
+            android:fontFamily="@font/gilroybold"
+            android:hint="first"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#cdcdce"
+            app:layout_constraintStart_toStartOf="@id/details_hint_label"
+            app:layout_constraintTop_toBottomOf="@id/details_hint_label" />
+
+        <EditText
+            android:id="@+id/last"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@color/synth_color"
+            android:fontFamily="@font/gilroybold"
+            android:hint="last"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#cdcdce"
+            app:layout_constraintEnd_toEndOf="@id/details_label"
+            app:layout_constraintStart_toEndOf="@id/first"
+            app:layout_constraintTop_toTopOf="@id/first" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/radio_button_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@id/details_label"
+            app:layout_constraintStart_toStartOf="@id/details_label"
+            app:layout_constraintTop_toBottomOf="@id/first">
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/right_braces">
+
+                <RadioButton
+                    android:id="@+id/radio_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#cdcdce"
+                    android:checked="false"
+                    android:fontFamily="@font/gilroybold"
+                    android:paddingEnd="30dp"
+                    android:text="Client"
+                    android:textColor="#cdcdce"
+                    android:textSize="20sp" />
+
+                <RadioButton
+                    android:id="@+id/radio_lawyer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:buttonTint="#cdcdce"
+                    android:checked="false"
+                    android:fontFamily="@font/gilroybold"
+                    android:paddingEnd="30dp"
+                    android:text="Lawyer"
+                    android:textColor="#cdcdce"
+                    android:textSize="20sp" />
+            </RadioGroup>
+
+            <ImageView
+                android:id="@+id/right_braces"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/right_brace_icon"
+                app:layout_constraintDimensionRatio="47.9:181.27"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/radio_group" />
+
+            <ImageView
+                android:id="@+id/left_braces"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/left_brace_icon"
+                app:layout_constraintDimensionRatio="47.9:181.27"
+                app:layout_constraintEnd_toStartOf="@id/radio_group"
+                app:layout_constraintTop_toTopOf="@id/radio_group" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/gilroysemibold"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Type\nof\nuser"
+                android:textColor="@color/copper_text_color"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/left_braces"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/synth_color"
+            android:fontFamily="@font/gilroybold"
+            android:hint="abc@xyz.com"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:visibility="gone"
+            android:textColor="#cdcdce"
+            app:layout_constraintEnd_toEndOf="@id/radio_button_layout"
+            app:layout_constraintStart_toStartOf="@id/radio_button_layout"
+            app:layout_constraintTop_toBottomOf="@id/radio_button_layout" />
+
+        <ImageView
+            android:id="@+id/separator"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/separator_bottom"
+            app:layout_constraintDimensionRatio="480:15"
+            app:layout_constraintEnd_toEndOf="@id/email"
+            app:layout_constraintStart_toStartOf="@id/email"
+            app:layout_constraintTop_toBottomOf="@id/email" />
+
+        <CheckBox
+            android:id="@+id/terms_conditions"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/copper_text_color"
+            android:checked="false"
+            android:textColor="#cdcdce"
+            app:layout_constraintEnd_toEndOf="@id/welcome"
+            app:layout_constraintStart_toStartOf="@id/welcome"
+            app:layout_constraintTop_toBottomOf="@id/separator" />
+
+        <TextView
+            android:id="@+id/terms_conditions_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:fontFamily="@font/gilroylight"
+            android:paddingStart="10dp"
+            android:text="you agree to our terms and conditions before proceeding."
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/welcome"
+            app:layout_constraintStart_toStartOf="@id/welcome"
+            app:layout_constraintTop_toBottomOf="@id/terms_conditions" />
+
+        <club.cred.synth.views.SynthButton
+            android:id="@+id/welcome"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:enabled="false"
+            android:fontFamily="@font/gilroysemibold"
+            android:gravity="center"
+            android:text="Agree &amp; Continue"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/inner_layout"
+            app:layout_constraintEnd_toEndOf="@id/radio_button_layout"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/radio_button_layout"
+            app:layout_constraintTop_toBottomOf="@id/terms_conditions_label"
+            app:neuButtonRadius="23dp"
+            app:neuButtonType="elevated_soft" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/emailSent"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/email_sent_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:ignore="ImageContrastCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <ImageView
+        android:id="@+id/border_top"
+        android:layout_width="match_parent"
+        android:layout_height="74px"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toTopOf="@id/inner_layout"
+        app:srcCompat="@drawable/border_top_svg" />
+
+    <ImageView
+        android:id="@+id/border_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="74px"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintTop_toBottomOf="@id/inner_layout"
+        app:srcCompat="@drawable/border_bottom_svg" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/mobile_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="48dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/gilroysemibold"
+            android:text="@string/mobile_number_label_text"
+            app:layout_constraintTop_toTopOf="@id/inner_layout"/>
+        <TextView
+            android:id="@+id/OTP_hint_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="48dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/gilroylight"
+            android:text="Please enter a 10 digit mobile number"
+            app:layout_constraintTop_toBottomOf="@id/mobile_label"
+            app:layout_constraintStart_toStartOf="@id/mobile_label"
+            app:layout_constraintEnd_toEndOf="@id/mobile_label"
+            />
+
+        <EditText
+            android:id="@+id/input_OTP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@color/synth_color"
+            android:fontFamily="@font/gilroybold"
+            android:hint="9876543210"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textColor="#cdcdce"
+            app:layout_constraintEnd_toEndOf="@id/OTP_hint_label"
+            app:layout_constraintStart_toStartOf="@id/OTP_hint_label"
+            app:layout_constraintTop_toBottomOf="@id/OTP_hint_label" />
+
+
+        <club.cred.synth.views.SynthButton
+            android:id="@+id/welcome"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/gilroysemibold"
+            android:gravity="center"
+            android:text="Continue"
+            android:textSize="15sp"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="@id/input_OTP"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/input_OTP"
+            app:layout_constraintTop_toBottomOf="@id/input_OTP"
+            app:layout_constraintBottom_toBottomOf="@id/inner_layout"
+            app:neuButtonRadius="23dp"
+            app:neuButtonType="elevated_soft" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

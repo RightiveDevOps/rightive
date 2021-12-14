@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.law.rightive.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="com.law.rightive.SignUpActivity"
+        android:label="activity_sign_up"
+        tools:layout="@layout/activity_sign_up" />
+    <activity
+        android:id="@+id/OTPActivity"
+        android:name="com.law.rightive.OTPActivity"
+        android:label="activity_otp"
+        tools:layout="@layout/activity_otp" />
+    <activity
+        android:id="@+id/profileActivity"
+        android:name="com.law.rightive.ProfileActivity"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+    <activity
+        android:id="@+id/welcomeActivity"
+        android:name="com.law.rightive.WelcomeClientActivity"
+        android:label="activity_welcome"
+        tools:layout="@layout/activity_welcome_client" />
+</navigation>

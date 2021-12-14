@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LawyerDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:animateLayoutChanges="true"
+        android:clipChildren="false"
+        android:foregroundGravity="top"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/nameLabelAndLawyerLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
+            android:animateLayoutChanges="true"
+            app:layout_constraintBottom_toTopOf="@id/separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RelativeLayout
+                android:id="@+id/relativeNameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/hiLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroyregular"
+                    android:gravity="center_vertical"
+                    android:text="Hi !"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/firstNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hiLabel"
+                    android:fontFamily="@font/gilroyextrabold"
+                    android:gravity="center_vertical"
+                    android:text="John"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/lastNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firstNameLabel"
+                    android:fontFamily="@font/gilroyextrabold"
+                    android:gravity="center_vertical"
+                    android:text="Doe"
+                    android:textSize="24sp"
+
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/lawyerHintLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/gilroylight"
+                android:gravity="center_vertical|start"
+                android:paddingEnd="30dp"
+                android:text=" | Lawyer"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@id/relativeNameLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/relativeNameLayout"
+                app:layout_constraintTop_toTopOf="@id/relativeNameLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/separator"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/separator_bottom"
+            app:layout_constraintDimensionRatio="480:15"
+            app:layout_constraintEnd_toEndOf="@id/nameLabelAndLawyerLayout"
+            app:layout_constraintStart_toStartOf="@id/nameLabelAndLawyerLayout"
+            app:layout_constraintTop_toBottomOf="@id/nameLabelAndLawyerLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/professionalDetailsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:animateLayoutChanges="true"
+            app:layout_constraintEnd_toEndOf="@id/nameLabelAndLawyerLayout"
+            app:layout_constraintStart_toStartOf="@id/nameLabelAndLawyerLayout"
+            app:layout_constraintTop_toBottomOf="@id/separator">
+
+            <TextView
+                android:id="@+id/professionalDetailsHint"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="@font/gilroylight"
+                android:text="please provide your professional details"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/lawyerRegistrationNumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/synth_color"
+                android:fontFamily="@font/gilroybold"
+                android:hint="lawyer registration number"
+                android:inputType="text"
+                android:paddingVertical="10dp"
+                android:textColor="#cdcdce"
+                app:layout_constraintTop_toBottomOf="@id/professionalDetailsHint" />
+
+            <TextView
+                android:id="@+id/specializationLabel"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/gilroybold"
+                android:text="Specialization"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/lawyerRegistrationNumber" />
+
+            <LinearLayout
+                android:id="@+id/specializationHintLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/specializationLabel">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroyregular"
+                    android:gravity="bottom"
+                    android:text="*you can select "
+                    android:textColor="@color/biometric_error_color"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroybold"
+                    android:gravity="bottom"
+                    android:text="2 Primary"
+                    android:textColor="@color/chip_primary_selected"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroyregular"
+                    android:gravity="bottom"
+                    android:text=" and "
+                    android:textColor="@color/biometric_error_color"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroybold"
+                    android:gravity="bottom"
+                    android:text="5 Secondary"
+                    android:textColor="@color/chip_secondary_selected"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroyregular"
+                    android:gravity="bottom"
+                    android:text=" specializations"
+                    android:textColor="@color/biometric_error_color"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <club.cred.synth.views.PitView
+            android:id="@+id/specializationPitView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_margin="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/professionalDetailsLayout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:animateLayoutChanges="true"
+            app:layout_constraintBottom_toBottomOf="@id/specializationPitView"
+            app:layout_constraintEnd_toEndOf="@id/specializationPitView"
+            app:layout_constraintStart_toStartOf="@id/specializationPitView"
+            app:layout_constraintTop_toTopOf="@id/specializationPitView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/editTextChipGroupLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="10dp"
+                android:animateLayoutChanges="true"
+                android:clipChildren="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/editTextChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/edit_text_background"
+                    android:fontFamily="@font/gilroybold"
+                    android:hint="Add Specialization"
+                    android:padding="5dp" />
+
+                <club.cred.synth.views.SynthImageButton
+                    android:id="@+id/chipAddImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="10dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_add_chip"
+                    app:layout_constraintBottom_toBottomOf="@id/editTextChipGroup"
+                    app:layout_constraintEnd_toEndOf="@id/editTextChipGroup"
+                    app:layout_constraintTop_toTopOf="@id/editTextChipGroup" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/specializationChipGroup"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/editTextChipGroupLayout"
+                app:layout_constraintStart_toStartOf="@id/editTextChipGroupLayout"
+                app:layout_constraintTop_toBottomOf="@id/editTextChipGroupLayout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <club.cred.synth.views.SynthButton
+            android:id="@+id/saveDetails_button"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/gilroysemibold"
+            android:gravity="center"
+            android:text="Save Details"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/specializationPitView"
+            app:neuButtonRadius="28dp"
+            app:neuButtonType="elevated_flat"
+            app:neuFlatButtonColor="@color/synth_button_color" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
