@@ -1,43 +1,25 @@
 package com.law.rightive;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
 import com.law.rightive.fragments.LawyerVerificationFragment;
 import com.law.rightive.utils.DefinedMethods;
 import com.law.rightive.utils.FireBaseUtils;
-import com.law.rightive.utils.StringUtils;
 import com.law.rightive.utils.UserUtils;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import club.cred.synth.views.SynthButton;
 
@@ -85,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 selectedId = checkedId;
-                radio_userId = (RadioButton) findViewById(checkedId);
+                radio_userId = findViewById(checkedId);
                 userTypeString = radio_userId != null ? radio_userId.getText().toString() : "";
                 emailEditText.setVisibility(View.GONE);
                 if (checkedId == 1001) {
@@ -177,7 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
                             }
                         }).show();
                     } else {
-                        if (FireBaseUtils.getInstance().getFirebaseUser() != null && !FireBaseUtils.getInstance().getFirebaseUser().isEmailVerified()) {
+                        if (FireBaseUtils.getInstance().getFireBaseUser() != null && !FireBaseUtils.getInstance().getFireBaseUser().isEmailVerified()) {
                             LawyerVerificationFragment lawyerVerificationFragment = new LawyerVerificationFragment();
                             lawyerVerificationFragment.show(getSupportFragmentManager(), "Lawyer Verification Drawer");
                             lawyerVerificationFragment.setCancelable(false);

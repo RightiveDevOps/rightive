@@ -17,22 +17,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class FireBaseUtils extends AppCompatActivity {
 
     private static FireBaseUtils fireBaseUtils = null;
 
+    private FireBaseUtils() {
+    }
+
+    public static FireBaseUtils getInstance() {
+        if (fireBaseUtils == null) {
+            fireBaseUtils = new FireBaseUtils();
+        }
+        return fireBaseUtils;
+    }
 
     private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private final FirebaseAuth fireBaseAuth = FirebaseAuth.getInstance();
@@ -45,9 +52,6 @@ public class FireBaseUtils extends AppCompatActivity {
         return firebaseFirestore;
     }
 
-    private FireBaseUtils() {
-    }
-
     public FirebaseDatabase getFirebaseDatabase() {
         return firebaseDatabase;
     }
@@ -56,38 +60,27 @@ public class FireBaseUtils extends AppCompatActivity {
         return actionCodeSettings;
     }
 
-    ActionCodeSettings actionCodeSettings =
-            ActionCodeSettings.newBuilder()
-                    // URL you want to redirect back to. The domain (www.example.com) for this
-                    // URL must be whitelisted in the Firebase Console.
-                    .setUrl("https://rightive-legal.firebaseapp.com/finishSignUp?cartId=1234")
-                    // This must be true
-                    .setHandleCodeInApp(true)
-                    .setIOSBundleId("com.rightive.ios")
-                    .setAndroidPackageName(
-                            "com.rightive.android",
-                            true, /* installIfNotAvailable */
-                            "12"    /* minimumVersion */)
-                    .build();
+    ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
+            .setUrl("https://rightive-legal.firebaseapp.com/finishSignUp?cartId=1234")
+            .setHandleCodeInApp(true)
+            .setIOSBundleId("com.rightive.ios")
+            .setAndroidPackageName(
+                    "com.rightive.android",
+                    true,
+                    "12")
+            .build();
 
 
-    public FirebaseUser getFirebaseUser() {
+    public FirebaseUser getFireBaseUser() {
         return firebaseUser;
     }
 
-    public void setFireBaseUtils(FirebaseUser firebaseUser) {
+    public void setFireBaseUser(FirebaseUser firebaseUser) {
         this.firebaseUser = firebaseUser;
     }
 
     public FirebaseAuth getFireBaseAuth() {
         return fireBaseAuth;
-    }
-
-    public static FireBaseUtils getInstance() {
-        if (fireBaseUtils == null) {
-            fireBaseUtils = new FireBaseUtils();
-        }
-        return fireBaseUtils;
     }
 
     public List<Object> addDataToFireBaseDB() {
@@ -107,12 +100,53 @@ public class FireBaseUtils extends AppCompatActivity {
 
     public void addClientToFireStore(View view) {
         collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_CLIENT);
-        collectionReference.document(FireBaseUtils.getInstance().getFirebaseUser().getUid()).set(UserUtils.getInstance().getUserDetailsMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(@NonNull Void unused) {
-                DefinedMethods.getSnackBar(view, "User added successfully").show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        collectionReference
+                .document(FireBaseUtils.getInstance().getFireBaseUser().getUid())
+                .set(UserUtils.getInstance().getUserDetailsMap())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(@NonNull Void unused) {
+                        DefinedMethods.getSnackBar(view, "User added successfully").show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        DefinedMethods.getSnackBar(view, e.getMessage()).show();
+                    }
+                });
+    }
+
+    public void addLawyerToFireStore(View view) {
+        collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_LAWYER);
+        collectionReference
+                .document(FireBaseUtils.getInstance().getFireBaseUser().getUid())
+                .set(UserUtils.getInstance().getUserDetailsMap())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(@NonNull Void unused) {
+                        DefinedMethods.getSnackBar(view, "User added successfully").show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        DefinedMethods.getSnackBar(view, e.getMessage()).show();
+                    }
+                });
+    }
+
+    public void addLawyerDetailsToFireStore(View view) {
+        collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_LAWYER);
+        collectionReference
+                .document("rightive@gmail.com") //FireBaseUtils.getInstance().getFireBaseUser().getUid()
+                .set(UserUtils.getInstance().getTestLawyerMap())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(@NonNull Void unused) {
+                        DefinedMethods.getSnackBar(view, "Details updated successfully").show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 DefinedMethods.getSnackBar(view, e.getMessage()).show();
@@ -120,19 +154,11 @@ public class FireBaseUtils extends AppCompatActivity {
         });
     }
 
-    public void addLawyerToFireStore(View view) {
-        collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_LAWYER);
-        collectionReference.document(FireBaseUtils.getInstance().getFirebaseUser().getUid()).set(UserUtils.getInstance().getUserDetailsMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(@NonNull Void unused) {
-                DefinedMethods.getSnackBar(view, "User added successfully").show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                DefinedMethods.getSnackBar(view, e.getMessage()).show();
-            }
-        });
+    public void addSpecializationsToFireStore(List<String> allAddedSpecializations, View view) {
+        collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_SPECIALIZATIONS);
+        collectionReference
+                .document(StringUtils.FIRESTORE_SPECIALIZATIONS_DOC)
+                .update(StringUtils.FIRESTORE_SPECIALIZATIONS_SPECS, allAddedSpecializations);
     }
 
     public void addCaseToFireStore(View view) {

@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView singOutText = findViewById(R.id.signOut_textField);
 
-        FirebaseUser firebaseUser = FireBaseUtils.getInstance().getFirebaseUser();
+        FirebaseUser firebaseUser = FireBaseUtils.getInstance().getFireBaseUser();
         if (firebaseUser != null) {
             if (UserUtils.getInstance().getUserType() == 1001) {
                 if (!firebaseUser.isEmailVerified()) {

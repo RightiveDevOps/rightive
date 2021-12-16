@@ -159,7 +159,7 @@ public class OTPActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            FireBaseUtils.getInstance().setFireBaseUtils(task.getResult().getUser());
+                            FireBaseUtils.getInstance().setFireBaseUser(task.getResult().getUser());
                             DefinedMethods.navigateToActivity(OTPActivity.this, ProfileActivity.class, true);
                         } else {
                             // if the code is not correct then we are
