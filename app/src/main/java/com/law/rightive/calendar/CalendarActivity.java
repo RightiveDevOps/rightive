@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,6 +61,9 @@ public class CalendarActivity extends AppCompatActivity {
     FloatingActionButton addEventFAB, addEventForCRN, addCustomEvent;
     TextView addEventForCRNText, addCustomEventText;
 
+    public static LottieAnimationView events_noDataFound;
+    public static LottieAnimationView events_progress_bar;
+
     boolean isAllFabsVisible;
 
     TextView textView;
@@ -68,11 +74,11 @@ public class CalendarActivity extends AppCompatActivity {
     Calendar changeMonth;
     List<Date> dates = new ArrayList<>();
 
-    EventsAdapter eventsAdapter;
+    private static EventsAdapter eventsAdapter;
 
     private DatabaseReference databaseReference;
     private RecyclerView eventsRecyclerView;
-    private ArrayList<EventsUtils> utilsArrayList = new ArrayList<>();
+    private static ArrayList<EventsUtils> utilsArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,9 @@ public class CalendarActivity extends AppCompatActivity {
         addCustomEvent.setVisibility(View.GONE);
         addEventForCRNText.setVisibility(View.GONE);
         addCustomEventText.setVisibility(View.GONE);
+
+        events_noDataFound = findViewById(R.id.events_noDataFound);
+        events_progress_bar = findViewById(R.id.events_progress_bar);
 
         isAllFabsVisible = false;
 
@@ -167,85 +176,48 @@ public class CalendarActivity extends AppCompatActivity {
 
         databaseReference = FireBaseUtils.getInstance().getFirebaseDatabase().getReference().child("EVENTS");
         databaseReference.keepSynced(true);
-
         eventsRecyclerView = findViewById(R.id.events_recycler_view);
         eventsRecyclerView.setHasFixedSize(true);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        events_noDataFound.setVisibility(View.GONE);
         eventsAdapter = new EventsAdapter(utilsArrayList, CalendarActivity.this);
         eventsRecyclerView.setAdapter(eventsAdapter);
         eventsAdapter.notifyDataSetChanged();
-//        loadRecyclerViewData();
-        fetchEvents();
-
+        fetchEvents(selectedDay, selectedMonth, selectedYear);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if (!isAllFabsVisible) {
-            addEventForCRN.show();
-            addCustomEvent.show();
-            addEventForCRNText.setVisibility(View.VISIBLE);
-            addCustomEventText.setVisibility(View.VISIBLE);
-            isAllFabsVisible = true;
-        } else {
-            addEventForCRN.hide();
-            addCustomEvent.hide();
-            addEventForCRNText.setVisibility(View.GONE);
-            addCustomEventText.setVisibility(View.GONE);
-            isAllFabsVisible = false;
-        }
-
-    }
-
-    private void fetchEvents() {
+    public static void fetchEvents(int day, int month, int year) {
+        month = month + 1;
+        events_progress_bar.setVisibility(View.VISIBLE);
+        events_progress_bar.playAnimation();
         FireBaseUtils
                 .getInstance()
                 .getFirebaseFirestore()
                 .collection(StringUtils.FIRESTORE_EVENTS)
+                .document(StringUtils.FIRESTORE_EVENTS_CAL_DOC)
+                .collection(String.valueOf(year))     //YEAR
+                .document(String.valueOf(month))       //MONTH
+                .collection(String.valueOf(day))       //DATE
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
+
+                        assert queryDocumentSnapshots != null;
                         if (!queryDocumentSnapshots.isEmpty()) {
+                            events_noDataFound.setVisibility(View.GONE);
                             utilsArrayList.clear();
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot dataSnapshot : list) {
                                 EventsUtils eventsUtils = dataSnapshot.toObject(EventsUtils.class);
                                 utilsArrayList.add(eventsUtils);
                             }
-                            eventsAdapter.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(CalendarActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                            utilsArrayList.clear();
+                            events_progress_bar.setVisibility(View.GONE);
+                            events_noDataFound.setVisibility(View.VISIBLE);
+                            events_noDataFound.playAnimation();
                         }
-                    }
-                });
-    }
-
-    private void loadRecyclerViewData() {
-        FireBaseUtils
-                .getInstance()
-                .getFirebaseFirestore()
-                .collection(StringUtils.FIRESTORE_EVENTS)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(@NonNull QuerySnapshot queryDocumentSnapshots) {
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot dataSnapshot : list) {
-                                EventsUtils eventsUtils = dataSnapshot.toObject(EventsUtils.class);
-                                utilsArrayList.add(eventsUtils);
-                            }
-                            eventsAdapter.notifyDataSetChanged();
-                        } else {
-                            Toast.makeText(CalendarActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(CalendarActivity.this, "Fail to get the data.\n" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        eventsAdapter.notifyDataSetChanged();
                     }
                 });
     }
@@ -260,6 +232,7 @@ public class CalendarActivity extends AppCompatActivity {
     };
 
     private void setUpCalendar(Calendar cal) {
+        fetchEvents(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH), cal.get(Calendar.YEAR));
         textView = findViewById(R.id.txt_current_month);
         textView.setText(sdf.format(cal.getTime()).toLowerCase());
 
@@ -296,7 +269,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarAdapter.setOnItemClickListener(new CalendarAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(Context context, int position) {
                 Calendar clickCalendar = Calendar.getInstance();
                 clickCalendar.setTime(dates.get(position));
                 selectedDay = clickCalendar.get(Calendar.DAY_OF_MONTH);

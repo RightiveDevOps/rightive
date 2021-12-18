@@ -2,6 +2,7 @@ package com.law.rightive.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.law.rightive.R;
+import com.law.rightive.calendar.CalendarActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,23 +27,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHolder> {
 
     private Context context;
-    private List<Date> data;
-    private Calendar currentDate;
-    private Calendar changeMonth;
-    private CalendarAdapter.OnItemClickListener mListener = null;
+    private static List<Date> data;
+    private static Calendar currentDate;
+    static private Calendar changeMonth;
+    static private Calendar selectedDate;
+    static private CalendarAdapter.OnItemClickListener mListener = null;
 
-    private int index = -1;
+    private static int index = -1;
     private boolean selectCurrentDate = true;
     private int currentMonth;
     private int currentYear;
     private int currentDay;
 
-    private int selectedDay;
-    private int selectedMonth;
-    private int selectedYear;
+    private static int selectedDay;
+    private static int selectedMonth;
+    private static int selectedYear;
 
     public CalendarAdapter(Context context, List<Date> data, Calendar currentDate, Calendar changeMonth) {
         this.context = context;
@@ -76,6 +82,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         try {
             Date dayInWeek = simpleDateFormat.parse(cal.getTime().toString());
             simpleDateFormat.applyPattern("EEE");
+            assert dayInWeek != null;
             holder.txtDayInWeek.setText(simpleDateFormat.format(dayInWeek));
             int s = cal.get(Calendar.DAY_OF_MONTH);
             holder.txtDate.setText(String.valueOf(s));
@@ -83,22 +90,19 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             Log.v("Exception", ex.getLocalizedMessage());
         }
 
-//        if (displayYear >= currentYear)
-//            if (displayMonth >= currentMonth || displayYear > currentYear)
-//                if (displayDay >= currentDay || displayMonth > currentMonth || displayYear > currentYear) {
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 index = holder.getAdapterPosition();
                 selectCurrentDate = false;
-                holder.onItemClick(index);
+                holder.onItemClick(context, index);
                 notifyDataSetChanged();
             }
         });
 
-        if (index == holder.getAdapterPosition())
+        if (index == holder.getAdapterPosition()) {
             makeItemSelected(holder);
-        else {
+        } else {
             if (displayDay == selectedDay
                     && displayMonth == selectedMonth
                     && displayYear == selectedYear
@@ -107,18 +111,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             else
                 makeItemDefault(holder);
         }
-//                } else makeItemDefault(holder);
-//            else makeItemDefault(holder);
-//        else makeItemDefault(holder);
-
     }
-
-//    private void makeItemDisabled(ViewHolder holder) {
-//        holder.txtDate.setTextColor(ContextCompat.getColor(context, R.color.copper_text_color_30));
-//        holder.txtDayInWeek.setTextColor(ContextCompat.getColor(context, R.color.copper_text_color_30));
-//        holder.linearLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.calendar_deselect));
-//        holder.linearLayout.setEnabled(false);
-//    }
 
     private void makeItemDefault(ViewHolder holder) {
         holder.txtDate.setTextColor(Color.parseColor("#cdcdce"));
@@ -140,7 +133,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(Context context, int position);
     }
 
     public void setOnItemClickListener(CalendarAdapter.OnItemClickListener listener) {
@@ -152,7 +145,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         TextView txtDate;
         TextView txtDayInWeek;
         LinearLayout linearLayout;
-        ImageView calImageView;
 
         private ViewHolder(@NonNull View itemView, CalendarAdapter.OnItemClickListener listener) {
             super(itemView);
@@ -160,12 +152,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
             txtDayInWeek = itemView.findViewById(R.id.txt_day);
             txtDayInWeek.setAllCaps(false);
             linearLayout = itemView.findViewById(R.id.calendar_linear_layout);
-            calImageView = itemView.findViewById(R.id.calImageView);
             this.listener = listener;
         }
 
         @Override
-        public void onItemClick(int position) {
+        public void onItemClick(Context context, int position) {
+            CalendarActivity.fetchEvents(position + 1, selectedMonth, selectedYear);
+//            Toast.makeText(context, "Toast Made!!!" + index, Toast.LENGTH_SHORT).show();
         }
     }
 }

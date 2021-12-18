@@ -18,39 +18,41 @@
         android:elevation="8dp"
         android:focusable="true">
 
+
         <!-- Media -->
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/upperCardView"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:clipChildren="false">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_card_bkground_black" />
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_card_bkground_black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/text_constraint_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:animateLayoutChanges="true">
+                android:animateLayoutChanges="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <!-- Title, secondary and supporting text -->
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_margin="6dp"
-                    android:src="@drawable/ic_event_add_box"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/titleCRN"
                     android:layout_width="match_parent"
                     android:layout_height="24dp"
-                    android:layout_margin="16dp"
+                    android:layout_margin="10dp"
                     android:fontFamily="@font/gilroyextrabold"
                     android:gravity="center"
                     android:text="CRN Number"
@@ -62,7 +64,7 @@
                     android:id="@+id/crn_divider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/titleCRN" />
 
@@ -115,19 +117,27 @@
                     app:layout_constraintStart_toStartOf="@id/titleCRN"
                     app:layout_constraintTop_toBottomOf="@id/description" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!-- Buttons -->
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hiddenCardView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
                 android:animateLayoutChanges="true"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="@id/text_constraint_layout"
-                app:layout_constraintTop_toBottomOf="@id/text_constraint_layout" />
+                android:clipChildren="false"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/text_constraint_layout">
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/button_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

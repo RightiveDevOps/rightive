@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_calendar.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_lawyer_details.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/custom_calendar_day.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/event_material_card_view.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/specialization_chip_layout.xml" value="0.3625" />
       </map>
     </option>

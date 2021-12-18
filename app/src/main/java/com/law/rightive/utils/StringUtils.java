@@ -9,8 +9,12 @@ public class StringUtils {
     public static String FIRESTORE_CLIENT = "CLIENT";
     public static String FIRESTORE_LAWYER = "LAWYER";
     public static String FIRESTORE_CASES = "CASES";
+
     public static String FIRESTORE_EVENTS = "EVENTS";
+    public static String FIRESTORE_EVENTS_CAL_DOC = "calendarEvents";
+
     public static String FIRESTORE_NOTIFICATION = "NOTIFICATION";
+
     public static String FIRESTORE_SPECIALIZATIONS = "SPECIALIZATIONS";
     public static String FIRESTORE_SPECIALIZATIONS_DOC = "specializations";
     public static String FIRESTORE_SPECIALIZATIONS_SPECS = "specs";
