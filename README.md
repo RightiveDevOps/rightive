@@ -1,7 +1,7 @@
 # rightive
 Images
 1. Main
-![image](https://user-images.githubusercontent.com/94004494/146811051-189cf2a7-1bda-49a1-b92d-4b8408dbb254.png)
+![image](https://user-images.githubusercontent.com/94004494/146811051-189cf2a7-1bda-49a1-b92d-4b8408dbb254.png) /n
 2. Sign Up
 ![image](https://user-images.githubusercontent.com/94004494/146811146-2b7f3d66-e261-405f-9dd1-4f27d2093925.png)
 3. OTP
