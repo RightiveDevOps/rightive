@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,8 +14,8 @@
         android:animateLayoutChanges="true"
         android:clipChildren="false"
         android:foregroundGravity="top"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp">
+        android:paddingTop="48dp"
+        android:paddingBottom="48dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/nameLabelAndLawyerLayout"
@@ -118,11 +118,12 @@
                 android:id="@+id/lawyerRegistrationNumber"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@color/synth_color"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/edit_text_background_black"
                 android:fontFamily="@font/gilroybold"
                 android:hint="lawyer registration number"
                 android:inputType="text"
-                android:paddingVertical="10dp"
+                android:padding="10dp"
                 android:textColor="#cdcdce"
                 app:layout_constraintTop_toBottomOf="@id/professionalDetailsHint" />
 
@@ -190,29 +191,31 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <club.cred.synth.views.PitView
-            android:id="@+id/specializationPitView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/specializationChipLayout"
             android:layout_width="0dp"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:animateLayoutChanges="true"
+            android:minHeight="250dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/professionalDetailsLayout" />
+            app:layout_constraintTop_toBottomOf="@id/professionalDetailsLayout">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:animateLayoutChanges="true"
-            app:layout_constraintBottom_toBottomOf="@id/specializationPitView"
-            app:layout_constraintEnd_toEndOf="@id/specializationPitView"
-            app:layout_constraintStart_toStartOf="@id/specializationPitView"
-            app:layout_constraintTop_toTopOf="@id/specializationPitView">
+            <club.cred.synth.views.PitView
+                android:id="@+id/specializationPitView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/editTextChipGroupLayout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:animateLayoutChanges="true"
                 android:clipChildren="false"
                 app:layout_constraintStart_toStartOf="parent"
@@ -223,10 +226,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="5dp"
-                    android:background="@drawable/edit_text_background"
+                    android:background="@drawable/edit_text_background_black"
                     android:fontFamily="@font/gilroybold"
                     android:hint="Add Specialization"
-                    android:padding="5dp" />
+                    android:maxLength="35"
+                    android:paddingVertical="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="48dp" />
 
                 <club.cred.synth.views.SynthImageButton
                     android:id="@+id/chipAddImageButton"
@@ -245,14 +251,26 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/specializationChipGroup"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
                 android:animateLayoutChanges="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/editTextChipGroupLayout"
                 app:layout_constraintStart_toStartOf="@id/editTextChipGroupLayout"
                 app:layout_constraintTop_toBottomOf="@id/editTextChipGroupLayout" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/chipLoadingAnimView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextChipGroupLayout"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_heart_beat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -270,11 +288,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/specializationPitView"
+            app:layout_constraintTop_toBottomOf="@id/specializationChipLayout"
             app:neuButtonRadius="28dp"
             app:neuButtonType="elevated_flat"
             app:neuFlatButtonColor="@color/synth_button_color" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

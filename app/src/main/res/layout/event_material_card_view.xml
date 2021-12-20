@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:clipChildren="false"
         android:animateLayoutChanges="true"
         android:elevation="8dp"
         android:focusable="true">
-
 
         <!-- Media -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,10 +28,11 @@
             android:clipChildren="false">
 
             <ImageView
+                android:id="@+id/imageBackground"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_card_bkground_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,26 +119,10 @@
                     app:layout_constraintTop_toBottomOf="@id/description" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!-- Buttons -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hiddenCardView"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="10dp"
-                android:animateLayoutChanges="true"
-                android:clipChildren="false"
-                android:visibility="visible"
-                app:layout_constraintTop_toBottomOf="@id/text_constraint_layout">
 
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/button_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- Buttons -->
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

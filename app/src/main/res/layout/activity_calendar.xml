@@ -137,8 +137,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/events_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_height="match_parent"
             android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="@id/calendar_recycler_view"
             app:layout_constraintStart_toStartOf="@id/calendar_recycler_view"

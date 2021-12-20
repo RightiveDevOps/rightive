@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -37,6 +38,7 @@ public class LawyerDetails extends AppCompatActivity {
     List<String> allAddedSpecializations;
     List<ChipUtils> specializations;
     SynthButton saveDetails_button;
+    LottieAnimationView chipLoadingAnimView;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -49,6 +51,9 @@ public class LawyerDetails extends AppCompatActivity {
         chipGroup = findViewById(R.id.specializationChipGroup);
 
         saveDetails_button = findViewById(R.id.saveDetails_button);
+
+        chipLoadingAnimView = findViewById(R.id.chipLoadingAnimView);
+        chipLoadingAnimView.setVisibility(View.VISIBLE);
 
         specializations = new ArrayList<>();
         allAddedSpecializations = new ArrayList<>();
@@ -80,7 +85,7 @@ public class LawyerDetails extends AppCompatActivity {
                 UserUtils.getInstance().setSecondarySpecializations(listSecondary);
                 FireBaseUtils.getInstance().addLawyerDetailsToFireStore(v);
                 FireBaseUtils.getInstance().addSpecializationsToFireStore(allAddedSpecializations, v);
-                DefinedMethods.navigateToActivity(LawyerDetails.this, WelcomeLawyerActivity.class, true);
+//                DefinedMethods.navigateToActivity(LawyerDetails.this, WelcomeLawyerActivity.class, true);
             }
         });
     }
@@ -103,6 +108,7 @@ public class LawyerDetails extends AppCompatActivity {
                             {
                                 addChip(allAddedSpecializations.get(i), true);
                             }
+                            chipLoadingAnimView.setVisibility(View.GONE);
                         } else {
                             Toast.makeText(LawyerDetails.this, "No data found in Database", Toast.LENGTH_SHORT).show();
                         }
@@ -113,7 +119,6 @@ public class LawyerDetails extends AppCompatActivity {
     private void addChip(String text, boolean fromFireBase) {
         ChipUtils chip = (ChipUtils) getLayoutInflater().inflate(R.layout.specialization_chip_layout, chipGroup, false);
         chip.setText(text);
-        chip.setCloseIconVisible(true);
         chip.setOnCloseIconClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,8 +165,10 @@ public class LawyerDetails extends AppCompatActivity {
             }
         });
         if (fromFireBase) {
+            chip.setCloseIconVisible(false);
             chipGroup.addView(chip);
         } else if (!allAddedSpecializations.contains(text)) {
+            chip.setCloseIconVisible(true);
             allAddedSpecializations.add(chip.getText().toString());
             chipGroup.addView(chip);
         } else {

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,9 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -172,8 +176,54 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        //EVENTS FROM FIREBASE -> CARD LINEAR LAYOUT
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            private final ColorDrawable background = new ColorDrawable(getResources().getColor(R.color.rally_green_500));
 
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+
+                View itemView = viewHolder.itemView;
+                float newDx = dX;
+                if (newDx >= (float) itemView.getWidth() / 3) {
+                    newDx = (float) itemView.getWidth() / 3;
+                }
+                else if(newDx < (float) -itemView.getWidth() / 3)
+                {
+                    newDx = (float) -itemView.getWidth() / 3;
+                }
+
+/*              if (dX > 0) {
+                    background.setBounds(itemView.getLeft(), itemView.getTop(), itemView.getLeft() + ((int) dX), itemView.getBottom());
+                } else if (dX < 0) {
+                    background.setBounds(itemView.getRight() + ((int) dX), itemView.getTop(), itemView.getRight(), itemView.getBottom());
+                } else {
+                    background.setBounds(100, 0, 100, 0);
+                }
+                background.draw(c);
+ */
+                Bitmap icon;
+
+                super.onChildDraw(c, recyclerView, viewHolder, newDx, dY, actionState, isCurrentlyActive);
+            }
+
+            @Override
+            public int convertToAbsoluteDirection(int flags, int layoutDirection) {
+                return super.convertToAbsoluteDirection(flags, layoutDirection);
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+
+        //EVENTS FROM FIREBASE -> CARD LINEAR LAYOUT
         databaseReference = FireBaseUtils.getInstance().getFirebaseDatabase().getReference().child("EVENTS");
         databaseReference.keepSynced(true);
         eventsRecyclerView = findViewById(R.id.events_recycler_view);
@@ -183,6 +233,7 @@ public class CalendarActivity extends AppCompatActivity {
         eventsAdapter = new EventsAdapter(utilsArrayList, CalendarActivity.this);
         eventsRecyclerView.setAdapter(eventsAdapter);
         eventsAdapter.notifyDataSetChanged();
+        itemTouchHelper.attachToRecyclerView(eventsRecyclerView);
         fetchEvents(selectedDay, selectedMonth, selectedYear);
     }
 
