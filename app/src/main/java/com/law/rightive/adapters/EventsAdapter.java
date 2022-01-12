@@ -7,14 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.law.rightive.R;
 import com.law.rightive.calendar.CalendarActivity;
+import com.law.rightive.dialogs.EditEventFullScreenDialog;
 import com.law.rightive.utils.EventsUtils;
 
 import java.util.ArrayList;
@@ -86,11 +89,9 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsView
 
         @Override
         public void onItemClick(Context context, int position) {
-//            if (imageForegroundLayout.getVisibility() == View.VISIBLE) {
-//                imageForegroundLayout.setVisibility(View.INVISIBLE);
-//            } else {
-//                imageForegroundLayout.setVisibility(View.VISIBLE);
-//            }
+//            Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show();
+            EditEventFullScreenDialog editEventFullScreenDialog = new EditEventFullScreenDialog();
+            editEventFullScreenDialog.show(CalendarActivity.fragmentManager, "Edit Event");
         }
     }
 }

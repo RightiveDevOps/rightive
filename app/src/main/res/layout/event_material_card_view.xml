@@ -64,7 +64,7 @@
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/crn_divider"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/titleCRN" />

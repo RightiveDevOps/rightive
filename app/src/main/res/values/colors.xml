@@ -11,6 +11,10 @@
 <!-- CRED SYNTH -->
     <color name="copper_text_color">#f9d3b4</color>
     <color name="copper_text_color_30">#40f9d3b4</color>
+    
+    <color name="icon_grad_start">#D9896A</color>
+    <color name="icon_grad_end">#945439</color>
+    
     <color name="synth_color">#212426</color>
     <color name="synth_button_color">#426bb6</color>
     <color name="snackbar_background_color">#dd5c64</color>

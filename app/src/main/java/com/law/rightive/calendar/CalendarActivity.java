@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,11 +22,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -75,6 +72,8 @@ public class CalendarActivity extends AppCompatActivity {
     int selectedMonth = currentMonth;
     int selectedYear = currentYear;
 
+    public static FragmentManager fragmentManager;
+
     Calendar changeMonth;
     List<Date> dates = new ArrayList<>();
 
@@ -89,7 +88,7 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        SynthImageButton calendar_prev_button = findViewById(R.id.calendar_prev_button);
+        SynthImageButton calendar_prev_button = findViewById(R.id.event_dialog_close_button);
         SynthImageButton calendar_next_button = findViewById(R.id.calendar_next_button);
 
         recyclerView = findViewById(R.id.calendar_recycler_view);
@@ -106,6 +105,8 @@ public class CalendarActivity extends AppCompatActivity {
 
         events_noDataFound = findViewById(R.id.events_noDataFound);
         events_progress_bar = findViewById(R.id.events_progress_bar);
+
+        fragmentManager = getSupportFragmentManager();
 
         isAllFabsVisible = false;
 

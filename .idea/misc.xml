@@ -5,19 +5,28 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable-v24/edit_text_background_black.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/edit_text_background.xml" value="0.37864583333333335" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/edit_text_background_black.xml" value="0.37864583333333335" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.21875" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/ic_card_bkground_black.xml" value="0.37864583333333335" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/ic_card_bkground_prple.xml" value="0.37864583333333335" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/drawable/ic_chevron_left.xml" value="0.37864583333333335" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout-w936dp/add_event_fullscreen_dialog.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_calendar.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_lawyer_details.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_otp.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/add_event_fullscreen_dialog.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/custom_calendar_day.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/edit_event_bottom_sheet_dialog.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/edit_event_fullscreen_dialog.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/event_add_bottom_sheet_layout.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/event_material_card_view.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/fragment_lawyer_verification.xml" value="0.3625" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/lawyer_details_bottom_fragment.xml" value="0.2346014492753623" />
         <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/specialization_chip_layout.xml" value="0.3625" />
+        <entry key="..\:/AndroidStudioProjects/Rightive/app/src/main/res/layout/test.xml" value="0.27011494252873564" />
       </map>
     </option>
   </component>
