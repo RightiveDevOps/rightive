@@ -16,6 +16,9 @@
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".dialogs.AddEventFullScreenDialog"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeLawyerActivity"
             android:exported="true">
             <intent-filter>

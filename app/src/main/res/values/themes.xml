@@ -35,12 +35,24 @@
         <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
         <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
+        <item name="materialTimePickerTheme">@style/ThemeOverlay.App.TimePicker</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
         </item>
         <item name="extendedFloatingActionButtonStyle">
             @style/Widget.App.ExtendedFloatingActionButton
         </item>
         <item name="floatingActionButtonStyle">@style/Widget.App.FloatingActionButton</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="colorPrimary">@color/rally_green_500</item>
+        <item name="colorOnPrimary">@color/rally_green_700</item>
+        <item name="colorPrimaryDark">@color/rally_green_700</item>
+        <item name="colorAccent">@color/rally_green_500</item>
+        <item name="fontFamily">@font/gilroysemibold</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!-- Customize text field of the text input mode. -->
+        <!--        <item name="textInputStyle">@style/Widget.App.TextInputLayout</item>-->
     </style>
 
     <style name="ThemeOverlay.App.DatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">

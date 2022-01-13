@@ -20,7 +20,7 @@ public class EventAddFragment extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.event_add_bottom_sheet_layout, container, false);
+        View view = inflater.inflate(R.layout.custom_event_add_bottom_sheet_layout, container, false);
 
         EditText edit_text_CRN = view.findViewById(R.id.edit_text_CRN);
 

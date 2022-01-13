@@ -23,7 +23,7 @@
 
         <!-- prev button -->
         <club.cred.synth.views.SynthImageButton
-            android:id="@+id/event_dialog_close_button"
+            android:id="@+id/calendar_prev_button"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_margin="15dp"
@@ -48,10 +48,10 @@
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/event_dialog_close_button"
+            app:layout_constraintBottom_toBottomOf="@id/calendar_prev_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/event_dialog_close_button" />
+            app:layout_constraintTop_toTopOf="@id/calendar_prev_button" />
 
 
         <club.cred.synth.views.SynthImageButton
@@ -161,6 +161,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0.8"
+                android:transitionName="activity_trans"
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/todo"
                 android:elevation="6dp"
@@ -169,61 +170,6 @@
                 app:fabSize="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/add_event_for_case"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:contentDescription="@string/todo"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toTopOf="@id/event_add_fab"
-                app:layout_constraintEnd_toEndOf="@id/event_add_fab"
-                app:layout_constraintStart_toStartOf="@id/event_add_fab"
-                app:srcCompat="@drawable/ic_event_add_crn" />
-
-            <!--Action name text for the add alarm button-->
-            <!--Make sure that you are constraining this Text to
-                the add Alarm FAB button-->
-            <TextView
-                android:id="@+id/add_event_for_case_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/gilroyregular"
-                android:text="Add Event for CRN"
-                app:layout_constraintBottom_toBottomOf="@id/add_event_for_case"
-                app:layout_constraintEnd_toStartOf="@id/add_event_for_case"
-                app:layout_constraintTop_toTopOf="@id/add_event_for_case" />
-
-            <!--Floating action button for add person-->
-            <!--Make sure that you are constraining this
-                button to the add Alarm FAB button-->
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/add_custom_event_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:contentDescription="@string/todo"
-                app:fabSize="mini"
-                app:layout_constraintBottom_toTopOf="@id/add_event_for_case"
-                app:layout_constraintEnd_toEndOf="@id/add_event_for_case"
-                app:layout_constraintStart_toStartOf="@id/add_event_for_case"
-                app:srcCompat="@drawable/ic_event_add_alert" />
-
-            <!--Action name text for the add person button-->
-            <!--Make sure that you are constraining this Text
-                to the add Person FAB button-->
-            <TextView
-                android:id="@+id/add_custom_event_fab_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/gilroyregular"
-                android:text="Add Custom Event"
-                app:layout_constraintBottom_toBottomOf="@+id/add_custom_event_fab"
-                app:layout_constraintEnd_toStartOf="@+id/add_custom_event_fab"
-                app:layout_constraintTop_toTopOf="@+id/add_custom_event_fab" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

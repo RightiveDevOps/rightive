@@ -1,5 +1,7 @@
 package com.law.rightive.utils;
 
+import java.util.Date;
+
 public class EventsUtils {
 
     private String crn;
@@ -40,5 +42,9 @@ public class EventsUtils {
         this.description = description;
     }
 
+    public static boolean rescheduleEvent(Object toDate)
+    {
+        return false;
+    }
 
 }

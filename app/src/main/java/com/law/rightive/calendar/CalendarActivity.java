@@ -11,14 +11,17 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -33,7 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.law.rightive.R;
 import com.law.rightive.adapters.CalendarAdapter;
 import com.law.rightive.adapters.EventsAdapter;
-import com.law.rightive.fragments.EventAddFragment;
+import com.law.rightive.dialogs.AddEventFullScreenDialog;
 import com.law.rightive.utils.EventsUtils;
 import com.law.rightive.utils.FireBaseUtils;
 import com.law.rightive.utils.StringUtils;
@@ -59,8 +62,7 @@ public class CalendarActivity extends AppCompatActivity {
     private final int currentMonth = currentDate.get(Calendar.MONTH);
     private final int currentYear = currentDate.get(Calendar.YEAR);
     RecyclerView recyclerView;
-    FloatingActionButton addEventFAB, addEventForCRN, addCustomEvent;
-    TextView addEventForCRNText, addCustomEventText;
+    FloatingActionButton addEventFAB;
 
     public static LottieAnimationView events_noDataFound;
     public static LottieAnimationView events_progress_bar;
@@ -88,20 +90,11 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        SynthImageButton calendar_prev_button = findViewById(R.id.event_dialog_close_button);
+        SynthImageButton calendar_prev_button = findViewById(R.id.calendar_prev_button);
         SynthImageButton calendar_next_button = findViewById(R.id.calendar_next_button);
 
         recyclerView = findViewById(R.id.calendar_recycler_view);
         addEventFAB = findViewById(R.id.event_add_fab);
-        addEventForCRN = findViewById(R.id.add_event_for_case);
-        addCustomEvent = findViewById(R.id.add_custom_event_fab);
-        addEventForCRNText = findViewById(R.id.add_event_for_case_text);
-        addCustomEventText = findViewById(R.id.add_custom_event_fab_text);
-
-        addEventForCRN.setVisibility(View.GONE);
-        addCustomEvent.setVisibility(View.GONE);
-        addEventForCRNText.setVisibility(View.GONE);
-        addCustomEventText.setVisibility(View.GONE);
 
         events_noDataFound = findViewById(R.id.events_noDataFound);
         events_progress_bar = findViewById(R.id.events_progress_bar);
@@ -153,27 +146,10 @@ public class CalendarActivity extends AppCompatActivity {
         addEventFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isAllFabsVisible) {
-                    addEventForCRN.show();
-                    addCustomEvent.show();
-                    addEventForCRNText.setVisibility(View.VISIBLE);
-                    addCustomEventText.setVisibility(View.VISIBLE);
-                    isAllFabsVisible = true;
-                } else {
-                    addEventForCRN.hide();
-                    addCustomEvent.hide();
-                    addEventForCRNText.setVisibility(View.GONE);
-                    addCustomEventText.setVisibility(View.GONE);
-                    isAllFabsVisible = false;
-                }
-            }
-        });
+                Intent intent = new Intent(getApplicationContext(), AddEventFullScreenDialog.class);
 
-        addEventForCRN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EventAddFragment eventAddFragment = new EventAddFragment();
-                eventAddFragment.show(getSupportFragmentManager(), "Event Add Bottom Sheet");
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(CalendarActivity.this, addEventFAB, addEventFAB.getTransitionName());
+                startActivity(intent, options.toBundle()); //(intent, options.toBundle());
             }
         });
 
@@ -197,9 +173,7 @@ public class CalendarActivity extends AppCompatActivity {
                 float newDx = dX;
                 if (newDx >= (float) itemView.getWidth() / 3) {
                     newDx = (float) itemView.getWidth() / 3;
-                }
-                else if(newDx < (float) -itemView.getWidth() / 3)
-                {
+                } else if (newDx < (float) -itemView.getWidth() / 3) {
                     newDx = (float) -itemView.getWidth() / 3;
                 }
 

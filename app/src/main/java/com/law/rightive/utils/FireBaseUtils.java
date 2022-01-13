@@ -83,21 +83,6 @@ public class FireBaseUtils extends AppCompatActivity {
         return fireBaseAuth;
     }
 
-    public List<Object> addDataToFireBaseDB() {
-
-        Task<DocumentReference> collectionReference = firebaseFirestore.collection("USERS").add(UserUtils.getInstance().getUserDetailsMap())
-                .addOnSuccessListener(documentReference -> {
-                    List<Object> addResult = new ArrayList<>();
-
-                })
-                .addOnFailureListener(e -> {
-
-                });
-
-//        collectionReference.getResult();
-        return null;
-    }
-
     public void addClientToFireStore(View view) {
         collectionReference = firebaseFirestore.collection(StringUtils.FIRESTORE_CLIENT);
         collectionReference
@@ -165,6 +150,7 @@ public class FireBaseUtils extends AppCompatActivity {
     }
 
     public void addEventToFireStore(View view) {
+
     }
 
     public void addNotificationToFireStore(View view) {
