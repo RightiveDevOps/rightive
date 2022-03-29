@@ -15,7 +15,6 @@ import com.law.rightive.R;
 public class ChipUtils extends Chip {
     private boolean isPrimary;
     private boolean isSecondary;
-    private Chip chip;
     Context context;
 
     public ChipUtils(Context context) {
