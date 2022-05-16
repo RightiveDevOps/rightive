@@ -12,10 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.law.rightive.R;
+import com.law.rightive.parents.EventAddAndEdit;
 
 import club.cred.synth.views.SynthImageButton;
 
-public class EditEventFullScreenDialog extends DialogFragment {
+public class EditEventFullScreenDialog extends DialogFragment implements EventAddAndEdit {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,5 +41,10 @@ public class EditEventFullScreenDialog extends DialogFragment {
         });
 
         return view;
+    }
+
+    @Override
+    public boolean isCustom() {
+        return false;
     }
 }

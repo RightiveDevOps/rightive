@@ -54,8 +54,8 @@
                 android:id="@+id/fromConstraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:animateLayoutChanges="true"
                 android:layout_marginVertical="10dp"
+                android:animateLayoutChanges="true"
                 android:background="@drawable/edit_text_background_black"
                 app:layout_constraintTop_toBottomOf="@id/from">
 
@@ -67,7 +67,7 @@
                     android:backgroundTint="@color/synth_color"
                     android:clickable="true"
                     android:focusable="false"
-                    android:fontFamily="@font/gilroyextrabold"
+                    android:fontFamily="@font/gilroymedium"
                     android:hint="Date"
                     android:inputType="date"
                     android:padding="10dp"
@@ -79,8 +79,8 @@
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/insideDivider"
                     android:layout_width="1dp"
-                    android:layout_marginVertical="5dp"
                     android:layout_height="match_parent"
+                    android:layout_marginVertical="5dp"
                     app:layout_constraintStart_toEndOf="@id/fromDateEditText" />
 
                 <EditText
@@ -92,7 +92,7 @@
                     android:backgroundTint="@color/synth_color"
                     android:clickable="true"
                     android:focusable="false"
-                    android:fontFamily="@font/gilroyextrabold"
+                    android:fontFamily="@font/gilroymedium"
                     android:hint="Time"
                     android:inputType="time"
                     android:padding="10dp"
@@ -133,13 +133,13 @@
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/divider1" />
 
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            <EditText
                 android:id="@+id/addClientAutoCompleteText"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/edit_text_background_black"
-                android:fontFamily="@font/gilroyextrabold"
+                android:fontFamily="@font/gilroymedium"
                 android:hint="Add Client"
                 android:inputType="text"
                 android:padding="10dp"
@@ -154,6 +154,16 @@
                 android:layout_marginVertical="24dp"
                 app:layout_constraintTop_toBottomOf="@id/addClientAutoCompleteText" />
 
+            <LinearLayout
+                android:id="@+id/fiveNotificationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:minHeight="48dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/divider2" />
+
             <TextView
                 android:id="@+id/addNotificationTextView"
                 android:layout_width="match_parent"
@@ -164,7 +174,7 @@
                 android:minHeight="48dp"
                 android:text="add notification"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/divider2" />
+                app:layout_constraintTop_toBottomOf="@id/fiveNotificationLayout" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/divider3"
@@ -190,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:background="@drawable/edit_text_background_black"
-                android:fontFamily="@font/gilroyextrabold"
+                android:fontFamily="@font/gilroymedium"
                 android:gravity="top"
                 android:hint="Add Description"
                 android:inputType="textMultiLine"
@@ -320,7 +330,8 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/border_top" />
+            app:layout_constraintTop_toBottomOf="@id/border_top"
+            tools:ignore="TextContrastCheck" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider"
