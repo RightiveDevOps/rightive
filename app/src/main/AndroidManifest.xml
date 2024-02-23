@@ -36,7 +36,7 @@
             android:name=".WelcomeClientActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".calendar.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".LawyerDetails"
@@ -48,7 +48,7 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".calendar.CalendarActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
